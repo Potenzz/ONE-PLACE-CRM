@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-var mysql = require('mysql');
+var mysql = require('mysql2');
 var express = require('express');
 var session = require('express-session');
 const flash = require('express-flash');
@@ -38,7 +38,7 @@ var connection = mysql.createPool({
   password: process.env.DB_PASSWORD,
   database: process.env.DATABASE,
   multipleStatements: true,
-  timezone: 'utc'
+  timezone: 'Z'
 });
 
 // CONFIGURING OPTIONS
@@ -121,7 +121,7 @@ app.post("/neworder", async (req, res) => {
   let currentDate = new Date();
 
   // if new client is being created
-  if(isNewClient) {
+  if (isNewClient) {
     const queryAddNewClient = await addNewClient(dataDetails);
     const queryAddNewOrder = await addNewOrder(dataDetails, queryAddNewClient, totalCostOfProducts, currentDate);
     const queryAddMultipleProducts = await addMultipleProducts(queryAddNewOrder, productsData);
@@ -157,7 +157,7 @@ app.post("/updateorder", async (req, res) => {
   const queryAddMultipleProducts = await addMultipleProducts(orderId, productsData);
 
   // if user is deleteing some products from order
-  if(deletedIds.length > 0) {
+  if (deletedIds.length > 0) {
     const queryDeleteProductsById = await deleteProductsById(deletedIds);
     Promise.all([queryUpdateClientById, queryUpdateOrderById, queryAddMultipleProducts, queryDeleteProductsById]).then(() => {
       res.send("success");
@@ -205,7 +205,7 @@ app.get("/client_by_id", async (req, res) => {
 // END OF CLIENT BY ID SECTION *
 
 // DASHBOARD DATA SECTION *
-app.get("/dashboard_data", async (req,res) => {
+app.get("/dashboard_data", async (req, res) => {
   const queryDashboardData = await getDasboardData();
   Promise.resolve(queryDashboardData).then((results) => {
     res.send(results);

@@ -1,6 +1,6 @@
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt");
-const mysql = require("mysql");
+const mysql = require("mysql2");
 
 function initialize(connection, passport) {
   const authenticateUser = async (username, password, done) => {
