@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2022 at 12:04 PM
+-- Generation Time: Jan 25, 2026 at 12:04 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -40,7 +40,7 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`id`, `username`, `password`, `role`, `dateCreated`) VALUES
-(1, 'admin', '$2b$10$J1JTnk4KtLylMznNjWlRsOKPvsDEYDX.xyP77EY/Gq1JpccSnr3qa', 'admin', '2022-10-25');
+(1, 'admin', '$2b$10$J1JTnk4KtLylMznNjWlRsOKPvsDEYDX.xyP77EY/Gq1JpccSnr3qa', 'admin', '2025-10-25');
 
 -- --------------------------------------------------------
 
